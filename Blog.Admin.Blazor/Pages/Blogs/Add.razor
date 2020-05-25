@@ -1,0 +1,44 @@
+﻿@page "/blog/add"
+
+@using Blog.Admin.Blazor.Models
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@using  Blog.Admin.Blazor.Pages.Blogs.component
+
+<h1>添加</h1>
+
+<Editor OnSaveCallback="OnSaveAsync"></Editor>
+
+
+<div class="text-danger">
+    @_errmsg
+</div>
+
+@code {
+
+    private BlogArticle BlogArticle { get; set; }
+
+    private string _errmsg;
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private async Task OnSaveAsync(BlogArticle blogArticle)
+    {
+        BlogArticle = blogArticle;
+        var result = await Http.PostJsonAsync<MessageModel<string>>("/api/Blog", BlogArticle);
+
+        if (result.success)
+        {
+            NavManager.NavigateTo("/blog/list");
+        }
+        else
+        {
+            _errmsg = "保存失败";
+        }
+    }
+
+}
