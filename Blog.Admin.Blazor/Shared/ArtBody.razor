@@ -1,0 +1,34 @@
+﻿<article class="article-post-summary">
+    <div class="post-summary-box">
+        <h4 class="post-summary-title">
+            <a href="http://apk.neters.club/api/Blog/GoUrl?id=@(bID)">
+                @btitle
+            </a>
+        </h4>
+
+        <p class="post-summary-text">@bcontent</p>
+
+        <div class="post-date-box d-md-block">
+            <div class="post-date-day">
+                @(bCreateTime.ToString("yyyy-MM-dd"))  (Reader：@btraffic)
+            </div>
+        </div>
+    </div>
+</article>
+<div class="mb-4 d-md-block"></div>
+<hr class="d-none d-md-block">
+
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public int bID { get; set; }
+    [Parameter]
+    public string btitle { get; set; }
+    [Parameter]
+    public string bcontent { get; set; }
+    [Parameter]
+    public DateTime bCreateTime { get; set; }
+    [Parameter]
+    public int btraffic { get; set; }
+}

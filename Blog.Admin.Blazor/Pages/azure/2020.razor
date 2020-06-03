@@ -17,26 +17,7 @@
             {
                 foreach (var item in _blogs.response.data)
                 {
-                    <article class="article-post-summary">
-                        <div class="post-summary-box">
-                            <h4 class="post-summary-title">
-                                <a href="@item.bsubmitter">
-                                    @item.btitle
-                                </a>
-                            </h4>
-
-                            <p class="post-summary-text">@item.bcontent</p>
-
-                            <div class="post-date-box d-md-block">
-                                <div class="post-date-day">
-                                    @(item.bCreateTime.ToString("yyyy-MM-dd"))  (阅读：@item.btraffic)
-                                </div>
-                            </div>
-
-                        </div>
-                    </article>
-                    <div class="mb-4 d-md-block"></div>
-                    <hr class="d-none d-md-block">
+                    <ArtBody bID="@item.bID"  btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
                 }
             }
 
