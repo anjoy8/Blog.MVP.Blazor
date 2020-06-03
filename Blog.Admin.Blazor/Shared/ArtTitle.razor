@@ -1,0 +1,13 @@
+﻿<h3 class="h3-cat-list">
+    <span>@Title</span>
+    <small class="d-none d-md-inline text-muted">@Subtitle</small>
+    <a href="/" style="float: right;margin-top: 8px;font-size: 23px;font-size: 80%;font-weight: 400;color: #0366d6;" class="d-none d-md-inline ">Home</a>
+</h3>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Subtitle { get; set; }
+}

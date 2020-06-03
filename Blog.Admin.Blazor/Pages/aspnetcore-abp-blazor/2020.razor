@@ -9,40 +9,34 @@
     <div class="row">
         <section class="col-lg-9 col-md-12">
 
+            <ArtTitle Title="ASP.NET Core (2020)" Subtitle="Best and Fastest Frame" />
 
-            <h3 class="h3-cat-list">
-                <a class="float-right d-md-block" target="_blank" title="Subscribe Microsot Azure" href="/rss/azure">
-                    <span class="icon-rss"></span>
-                </a>
-                <span>Azure (2020)</span>
-                <small class="d-none d-md-inline text-muted">Best and fastest frame</small>
-            </h3>
             <hr>
 
             @if (_blogs != null)
             {
                 foreach (var item in _blogs.response.data)
                 {
-                    <article class="article-post-summary">
-                        <div class="post-summary-box">
-                            <h4 class="post-summary-title">
-                                <a href="@item.bsubmitter">
-                                    @item.btitle
-                                </a>
-                            </h4>
+            <article class="article-post-summary">
+                <div class="post-summary-box">
+                    <h4 class="post-summary-title">
+                        <a href="@item.bsubmitter">
+                            @item.btitle
+                        </a>
+                    </h4>
 
-                            <p class="post-summary-text">@item.bcontent</p>
+                    <p class="post-summary-text">@item.bcontent</p>
 
-                            <div class="post-date-box d-md-block">
-                                <div class="post-date-day">
-                                    @(item.bCreateTime.ToString("yyyy-MM-dd"))  (阅读：@item.btraffic)
-                                </div>
-                            </div>
-
+                    <div class="post-date-box d-md-block">
+                        <div class="post-date-day">
+                            @(item.bCreateTime.ToString("yyyy-MM-dd"))  (阅读：@item.btraffic)
                         </div>
-                    </article>
-                    <div class="mb-4  d-md-block"></div>
-                    <hr class="d-none d-md-block">
+                    </div>
+
+                </div>
+            </article>
+            <div class="mb-4  d-md-block"></div>
+            <hr class="d-none d-md-block">
                 }
             }
 
