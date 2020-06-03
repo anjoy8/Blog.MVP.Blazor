@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Blog.Admin.Blazor.Models
+namespace Blog.MVP.Blazor.Models
 {
     /// <summary>
     /// 通用分页信息类

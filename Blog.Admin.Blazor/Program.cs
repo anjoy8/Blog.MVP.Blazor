@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
 
-namespace Blog.Admin.Blazor
+namespace Blog.MVP.Blazor
 {
     public class Program
     {

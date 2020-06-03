@@ -1,9 +1,9 @@
 {
   "profiles": {
-    "Blog.Admin.Blazor": {
+    "Blog.MVP.Blazor": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5050",
+      "applicationUrl": "http://localhost:1818",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

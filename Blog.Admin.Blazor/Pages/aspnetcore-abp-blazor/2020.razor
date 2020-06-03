@@ -1,0 +1,68 @@
+﻿@page "/aspnetcore-abp-blazor/2020"
+
+@using Blog.MVP.Blazor.Models
+
+@inject HttpClient Http
+
+
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <section class="col-lg-9 col-md-12">
+
+
+            <h3 class="h3-cat-list">
+                <a class="float-right d-none d-md-block" target="_blank" title="Subscribe Microsot Azure" href="/rss/azure">
+                    <span class="icon-rss"></span>
+                </a>
+                <span>Azure (2020)</span>
+                <small class="d-none d-md-inline text-muted">Best and fastest frame</small>
+            </h3>
+            <hr>
+
+            @if (_blogs != null)
+            {
+                foreach (var item in _blogs.response.data)
+                {
+                    <article class="article-post-summary">
+                        <div class="post-summary-box">
+                            <h4 class="post-summary-title">
+                                <a href="@item.bsubmitter">
+                                    @item.btitle
+                                </a>
+                            </h4>
+
+                            <p class="post-summary-text">@item.bcontent</p>
+
+                            <div class="post-date-box d-none d-md-block">
+                                <div class="post-date-day">
+                                    @(item.bCreateTime.ToString("yyyy-MM-dd"))  (阅读：@item.btraffic)
+                                </div>
+                            </div>
+
+                        </div>
+                    </article>
+                    <div class="mb-4 d-none d-md-block"></div>
+                    <hr class="d-none d-md-block">
+                }
+            }
+
+
+
+
+        </section>
+       
+        <Author />
+
+
+    </div>
+</div>
+
+@code {
+    private MessageModel<PageModel<BlogArticle>> _blogs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var students = await Http.GetJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog?page=1&bcategory=MVP_aspnetcore-abp-blazor_2020&intPageSize=50");
+        this._blogs = students;
+    }
+}
