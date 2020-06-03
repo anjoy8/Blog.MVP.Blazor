@@ -17,8 +17,12 @@
             {
                 foreach (var item in _blogs.response.data)
                 {
-                    <ArtBody bID="@item.bID"  btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
+                    <ArtBody bID="@item.bID" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
                 }
+            }
+            else
+            {
+                <p><em>Loading...</em></p>
             }
 
         </section>

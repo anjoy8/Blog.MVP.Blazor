@@ -9,7 +9,7 @@
     <div class="row">
         <section class="col-lg-9 col-md-12">
 
-            <ArtTitle Title="IdentityServer4 (2020)" Subtitle="Authorization Authentication"  />
+            <ArtTitle Title="IdentityServer4 (2020)" Subtitle="Authorization Authentication" />
 
             <hr>
 
@@ -17,8 +17,12 @@
             {
                 foreach (var item in _blogs.response.data)
                 {
-                   <ArtBody bID="@item.bID" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
+                    <ArtBody bID="@item.bID" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
                 }
+            }
+            else
+            {
+                <p><em>Loading...</em></p>
             }
         </section>
 
