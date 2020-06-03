@@ -16,7 +16,7 @@ namespace Blog.MVP.Blazor
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddBaseAddressHttpClient();
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8081") });
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://apk.neters.club") });
 
             await builder.Build().RunAsync();
         }
