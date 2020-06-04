@@ -29,9 +29,9 @@
     private async Task OnSaveAsync(BlogArticle blogArticle)
     {
         BlogArticle = blogArticle;
-        var result = await Http.PostJsonAsync<MessageModel<string>>("/api/Blog", BlogArticle);
+        var result = await Http.PostAsJsonAsync("/api/Blog", BlogArticle);
 
-        if (result.success)
+        if (result.IsSuccessStatusCode)
         {
             NavManager.NavigateTo("/blog/list");
         }

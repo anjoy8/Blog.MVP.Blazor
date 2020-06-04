@@ -1,4 +1,4 @@
-﻿@page "/aspnetcore-abp-blazor/2020"
+﻿@page "/azure/2020"
 
 @using Blog.MVP.Blazor.Models
 
@@ -9,7 +9,7 @@
     <div class="row">
         <section class="col-lg-9 col-md-12">
 
-            <ArtTitle Title="ASP.NET Core (2020)" Subtitle="Best and Fastest Frame" />
+            <ArtTitle Title="Azure (2020)" Subtitle="Best Cloud Platform" />
 
             <hr>
 
@@ -24,11 +24,9 @@
             {
                 <Loading />
             }
-
         </section>
        
         <Author />
-
 
     </div>
 </div>
@@ -38,7 +36,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var students = await Http.GetJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog?page=1&bcategory=MVP_aspnetcore-abp-blazor_2020&intPageSize=50");
+        var students = await Http.GetFromJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog?page=1&bcategory=MVP_azure_2020&intPageSize=20");
         this._blogs = students;
     }
 }

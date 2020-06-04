@@ -36,7 +36,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var students = await Http.GetJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog?page=1&bcategory=MVP_ids4_2020&intPageSize=20");
+        var students = await Http.GetFromJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog?page=1&bcategory=MVP_ids4_2020&intPageSize=20");
         this._blogs = students;
     }
 }
