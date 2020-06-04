@@ -1,10 +1,13 @@
-﻿<div class="alert alert-secondary mt-4" role="alert">
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<div class="alert alert-secondary mt-4" role="alert">
     <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
     <strong>@Title</strong>
 
     <span class="text-nowrap">
         Please look
-        <a target="_blank" class="font-weight-bold" href="https://github.com/anjoy8/Blog.MVP.Blazor">Github</a>
+        <a target="_blank" class="font-weight-bold" href="@Configuration["GithubAddress"]">Github</a>
     </span>
     .
 </div>
