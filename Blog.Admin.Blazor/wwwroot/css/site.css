@@ -202,3 +202,27 @@ app {
 footer {
     text-align: center;
 }
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.imgRotate {
+    -webkit-transform: rotate(360deg);
+    animation: rotation 5.4s linear infinite;
+    -moz-animation: rotation 5.4s linear infinite;
+    -webkit-animation: rotation 5.4s linear infinite;
+    -o-animation: rotation 5.4s linear infinite;
+    width: 110px;
+    margin:50px auto;
+
+}
+.loadingtext {
+    margin: 50px auto;
+}
