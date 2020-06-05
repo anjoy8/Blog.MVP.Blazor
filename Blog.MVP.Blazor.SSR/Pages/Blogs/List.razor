@@ -1,0 +1,49 @@
+﻿@page "/blog/list"
+
+@using Blog.MVP.Blazor.SSR.Models
+
+@inject HttpClient Http
+
+<h1>博客</h1>
+
+<p class="text-right">
+    <a class="btn btn-primary" href="/blog/add">Add</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Class</th>
+        <th></th>
+    </tr>
+    @if (_blogs != null)
+    {
+        foreach (var item in _blogs.response.data)
+        {
+            <tr>
+                <td>@item.bID</td>
+                <td>@item.btitle</td>
+                <td>@item.bsubmitter</td>
+                <td>@item.bCreateTime</td>
+                <td>
+                    <a class="btn btn-primary" href="/student/modify/@item.bID">修改</a>
+                    <a class="btn btn-danger" href="/student/delete/@item.bID">删除</a>
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+@code {
+    private MessageModel<PageModel<BlogArticle>> _blogs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var students = await Http.GetFromJsonAsync<MessageModel<PageModel<BlogArticle>>>("/api/Blog");
+        this._blogs = students;
+    }
+}

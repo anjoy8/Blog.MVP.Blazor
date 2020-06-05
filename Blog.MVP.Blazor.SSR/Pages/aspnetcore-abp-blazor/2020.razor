@@ -1,0 +1,61 @@
+﻿@page "/aspnetcore-abp-blazor/2020"
+
+@using Blog.MVP.Blazor.SSR.Models
+
+@inject HttpClient Http
+
+
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <section class="col-lg-9 col-md-12">
+
+            <ArtTitle Title="ASP.NET Core (2020)" Subtitle="Best and Fastest Frame" />
+
+            <hr>
+
+            <input type="text" class="form-control mb-2 mr-sm-2" id="txtPlaneCode" placeholder="标题关键字" @bind="searchKey" />
+            <button type="button" class="btn btn-primary mb-2" @onclick="SearchArs">搜索</button>
+
+            @if (_blogs != null)
+            {
+                foreach (var item in _blogs.response.data)
+                {
+                    <ArtBody bID="@item.bID" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
+                }
+            }
+            else
+            {
+                <Loading />
+            }
+
+        </section>
+
+        <Author />
+
+
+    </div>
+</div>
+
+@code {
+    private string searchKey = "";
+    private MessageModel<PageModel<BlogArticle>> _blogs;
+    private List<BlogArticle> _blogs2 = new List<BlogArticle>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        this._blogs = await Http.GetFromJsonAsync<MessageModel<PageModel<BlogArticle>>>("http://apk.neters.club/api/Blog?page=1&bcategory=MVP_aspnetcore-abp-blazor_2020&intPageSize=20");
+
+        _blogs2 = _blogs.response.data;
+    }
+
+    private void SearchArs(MouseEventArgs e = null)
+    {
+        this._blogs.response.data = _blogs2;
+
+        if (searchKey.IsNotEmptyOrNull())
+        {
+            var searchArs = _blogs.response.data.Where(d => d.btitle != null && d.btitle.ToLower().Contains(searchKey.ToLower().Trim())).ToList();
+            _blogs.response.data = searchArs;
+        }
+    }
+}

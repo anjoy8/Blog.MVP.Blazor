@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Blog.MVP.Blazor.SSR</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+
+    <script>
+        var _text = "";
+        var int = null;
+
+        var loadTexts = ["与君初相识，犹如故人归", "有朋自远方来，不亦乐乎", "青，取之于蓝，而青于蓝", "剑阁峥嵘而崔嵬，一夫当关，万夫莫开", "千门万户曈曈日，总把新桃换旧符", "休对故人思故国，且将新火试新茶", "古藤老树昏鸦，小桥流水人家"];
+
+        _text = loadTexts[Math.floor((Math.random() * loadTexts.length))];
+
+    </script>
+</head>
+
+<body>
+    <app>
+        <div class="mb-4 d-md-block loadingtext">
+            <img class="imgRotate" src="logo.png">
+            <span style="margin-left: 20px;">  Loading... </span><span id="loadtext"></span>
+        </div>
+    </app>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script>
+        document.getElementById("loadtext").innerHTML = _text;
+
+        function showLoadText() {
+            _text = loadTexts[Math.floor((Math.random() * loadTexts.length))];
+            console.log(_text);
+            if (document.getElementById("loadtext") == null) {
+                clearInterval(int);
+            } else {
+                document.getElementById("loadtext").innerHTML = _text;
+            }
+        }
+
+        int = setInterval(function () {
+            showLoadText();
+        }, 4000);
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

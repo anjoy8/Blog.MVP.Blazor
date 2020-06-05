@@ -1,0 +1,137 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http.Json" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Index.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\MainLayout.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\NavMenu.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\SurveyPrompt.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\ArtBody.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\ArtBody.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
+    <_ContentIncludedByDefault Remove="Pages\azure\2020.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Blogs\Add.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Blogs\component\CancelBtn.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Blogs\component\Editor.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Blogs\List.razor" />
+    <_ContentIncludedByDefault Remove="Pages\identityserver4\2020.razor" />
+    <_ContentIncludedByDefault Remove="Shared\ArtBody.razor" />
+    <_ContentIncludedByDefault Remove="Shared\ArtTitle.razor" />
+    <_ContentIncludedByDefault Remove="Shared\Author.razor" />
+    <_ContentIncludedByDefault Remove="Shared\HotCard.razor" />
+    <_ContentIncludedByDefault Remove="Shared\Loading.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\ArtTitle.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\ArtTitle.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\Author.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\Author.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\HotCard.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\HotCard.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\Loading.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\Loading.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Blogs\component\CancelBtn.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Blogs\component\CancelBtn.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Blogs\component\Editor.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Blogs\component\Editor.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Blogs\Add.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Blogs\Add.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\Blogs\List.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Blogs\List.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\azure\2020.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\azure\2020.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Pages\identityserver4\2020.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\identityserver4\2020.razor" />
+  </ItemGroup>
+
+</Project>
