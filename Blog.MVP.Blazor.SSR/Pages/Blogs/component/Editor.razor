@@ -3,30 +3,34 @@
 @inherits LayoutComponentBase
 
 
-<div>
-    <div class="form-group">
-        <label>标题</label>
-        <input @bind="BlogArticle.btitle" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>分类</label>
-        <input @bind="BlogArticle.bcategory" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>作者</label>
-        <input @bind="BlogArticle.bsubmitter" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>内容</label>
-        <input @bind="BlogArticle.bcontent" class="form-control" />
-    </div>
+    <div>
+        <div class="form-group">
+            <label>标题</label>
+            <input @bind="BlogArticle.btitle" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>分类</label>
+            <input @bind="BlogArticle.bcategory" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>作者</label>
+            <input @bind="BlogArticle.bsubmitter" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>内容</label>
+            <input @bind="BlogArticle.bcontent" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>阅读</label>
+            <input @bind="BlogArticle.btraffic" class="form-control" />
+        </div>
 
-    <button class="btn btn-primary" @onclick="TrySave">
-        保存
-    </button>
+        <button class="btn btn-primary" @onclick="TrySave">
+            保存
+        </button>
 
-    <CancelBtn Name="取消"></CancelBtn>
-</div>
+        <CancelBtn Name="取消"></CancelBtn>
+    </div>
 
 @code{
 
