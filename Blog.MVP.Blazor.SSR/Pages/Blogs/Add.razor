@@ -29,7 +29,7 @@
     private async Task OnSaveAsync(BlogArticle blogArticle)
     {
         BlogArticle = blogArticle;
-        var result = await Http.PostAsJsonAsync("/api/Blog", BlogArticle);
+        var result = await Http.PostAsJsonAsync("http://apk.neters.club/api/Blog", BlogArticle);
 
         if (result.IsSuccessStatusCode)
         {
