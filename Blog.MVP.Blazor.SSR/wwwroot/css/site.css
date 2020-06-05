@@ -229,3 +229,6 @@ footer {
 .loadingtext {
     margin: 50px auto;
 }
+.search-bottom-40{
+    margin-bottom:40px !important;
+}

@@ -13,8 +13,7 @@
 
             <hr>
 
-            <input type="text" class="form-control mb-2 mr-sm-2" id="txtPlaneCode" placeholder="标题关键字" @bind="searchKey" />
-            <button type="button" class="btn btn-primary mb-2" @onclick="SearchArs">搜索</button>
+            <input type="text" class="form-control mb-2 mr-sm-2 search-bottom-40" placeholder="输入标题关键字，回车" value="@searchKey" @onchange="(e) => { searchKey = e.Value.ToString();SearchArs(); }" />
 
             @if (_blogs != null)
             {
