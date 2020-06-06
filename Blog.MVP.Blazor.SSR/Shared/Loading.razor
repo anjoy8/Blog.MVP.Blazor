@@ -7,11 +7,14 @@
 
 @code {
     private string _text;
-    private string[] loadTexts=new string[] {"与君初相识，犹如故人归","有朋自远方来，不亦乐乎" ,"青，取之于蓝，而青于蓝","剑阁峥嵘而崔嵬，一夫当关，万夫莫开","千门万户曈曈日，总把新桃换旧符","休对故人思故国，且将新火试新茶"};
+    private string[] loadTexts = new string[] { "与君初相识，犹如故人归", "有朋自远方来，不亦乐乎", "青，取之于蓝，而青于蓝", "剑阁峥嵘而崔嵬，一夫当关，万夫莫开", "千门万户曈曈日，总把新桃换旧符", "休对故人思故国，且将新火试新茶" };
 
     protected override async Task OnInitializedAsync()
     {
-        Random r = new Random();
-        _text=  loadTexts[r.Next(loadTexts.Length)]; 
+        await Task.Run(() =>
+        {
+            Random r = new Random();
+            _text = loadTexts[r.Next(loadTexts.Length)];
+        });
     }
 }

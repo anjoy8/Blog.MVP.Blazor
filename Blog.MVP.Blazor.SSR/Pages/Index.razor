@@ -1,8 +1,8 @@
 ﻿@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 
 欢迎来到 MVP 系统
-
-
 <section class="top-tags mb-4" style="margin-top: 20px;">
     <div class="card">
         <div class="card-header">热门标签</div>
@@ -13,6 +13,7 @@
                 <a href="/aspnetcore-abp-blazor/2020">Asp.Net Core</a>
                 <a href="/azure/2020">Azure</a>
                 <a href="/identityserver4/2020">Identityserver4</a>
+                <a href="/Icons">Icons</a>
             </div>
 
             <hr>
@@ -42,4 +43,5 @@
 </aside>
 
 
-<SurveyPrompt Title="查看代码?" />
+<SurveyPrompt Title="查看代码?" Url="@Configuration["GithubAddress"]" Icon="oi-code"/>
+<SurveyPrompt Title="添加新内容?" Url="/Blog/List" Icon="oi-pencil"/>

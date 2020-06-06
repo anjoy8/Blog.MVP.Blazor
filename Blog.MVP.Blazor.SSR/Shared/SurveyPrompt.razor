@@ -1,13 +1,10 @@
-﻿@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
-
-<div class="alert alert-secondary mt-4" role="alert">
-    <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
+﻿<div class="alert alert-secondary mt-4" role="alert">
+    <span class="oi @Icon mr-2" aria-hidden="true"></span>
     <strong>@Title</strong>
 
     <span class="text-nowrap">
         Please look
-        <a target="_blank" class="font-weight-bold" href="@Configuration["GithubAddress"]">Github</a>
+        <a target="_blank" class="" href="@Url">@Url</a>
     </span>
     .
 </div>
@@ -16,4 +13,8 @@
     // Demonstrates how a parent component can supply parameters
     [Parameter]
     public string Title { get; set; }
+    [Parameter]
+    public string Url { get; set; }
+    [Parameter]
+    public string Icon { get; set; }
 }
