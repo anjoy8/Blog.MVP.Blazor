@@ -23,8 +23,8 @@ namespace Blog.MVP.Blazor.SSR
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<HttpClient>();
+            services.AddScoped<WeatherForecastService>();
+            services.AddTransient<HttpClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

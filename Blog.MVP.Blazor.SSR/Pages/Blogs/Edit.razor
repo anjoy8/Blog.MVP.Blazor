@@ -1,0 +1,50 @@
+﻿@page "/blog/modify/{Id:int}"
+
+@using Blog.MVP.Blazor.SSR.Models
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@using  Blog.MVP.Blazor.SSR.Pages.Blogs.component
+
+<h1>编辑</h1>
+
+<Editor BlogArticle="BlogArticle" OnSaveCallback="OnSaveAsync"></Editor>
+
+
+<div class="text-danger">
+    @_errmsg
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private BlogArticle BlogArticle { get; set; }
+
+    private string _errmsg="";
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var result = await Http.GetFromJsonAsync<MessageModel<BlogArticle>>("http://apk.neters.club/api/Blog/GetBlogByIdForMVP?id=" + Id);
+        BlogArticle = result.response;
+    }
+
+    private async Task OnSaveAsync(BlogArticle blogArticle)
+    {
+        BlogArticle = blogArticle;
+
+        Http.DefaultRequestHeaders.Add("Authorization", $"Bearer {BlogArticle.Token}");
+        var result = await Http.PutAsJsonAsync("http://apk.neters.club/api/Blog/Update", BlogArticle);
+
+        if (result.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/blog/list");
+        }
+        else
+        {
+            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase+"。请刷新页面重试";
+        }
+    }
+
+}

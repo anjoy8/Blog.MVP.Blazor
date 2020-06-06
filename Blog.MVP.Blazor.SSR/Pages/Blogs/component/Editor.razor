@@ -5,6 +5,10 @@
 
     <div>
         <div class="form-group">
+            <label>令牌</label>
+            <input @bind="BlogArticle.Token" class="form-control" />
+        </div>
+        <div class="form-group">
             <label>标题</label>
             <input @bind="BlogArticle.btitle" class="form-control" />
         </div>
@@ -13,11 +17,11 @@
             <input @bind="BlogArticle.bcategory" class="form-control" />
         </div>
         <div class="form-group">
-            <label>作者</label>
+            <label>外链</label>
             <input @bind="BlogArticle.bsubmitter" class="form-control" />
         </div>
         <div class="form-group">
-            <label>内容</label>
+            <label>副标题</label>
             <input @bind="BlogArticle.bcontent" class="form-control" />
         </div>
         <div class="form-group">

@@ -57,6 +57,9 @@ namespace Blog.MVP.Blazor.SSR.Models
         /// </summary>
         public bool? IsDeleted { get; set; }
 
+
+        public string Token { get; set; }
+
     }
 
 }
