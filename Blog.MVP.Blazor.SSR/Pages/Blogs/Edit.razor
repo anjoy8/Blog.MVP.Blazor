@@ -21,7 +21,7 @@
 
     private BlogArticle BlogArticle { get; set; }
 
-    private string _errmsg="";
+    private string _errmsg = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -34,6 +34,7 @@
     {
         BlogArticle = blogArticle;
 
+        Http.DefaultRequestHeaders.Remove("Authorization");
         Http.DefaultRequestHeaders.Add("Authorization", $"Bearer {BlogArticle.Token}");
         var result = await Http.PutAsJsonAsync("http://apk.neters.club/api/Blog/Update", BlogArticle);
 
@@ -43,7 +44,7 @@
         }
         else
         {
-            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase+"。请刷新页面重试";
+            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase + "。请重试";
         }
     }
 
