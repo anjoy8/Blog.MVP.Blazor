@@ -232,3 +232,23 @@ footer {
 .search-bottom-40{
     margin-bottom:40px !important;
 }
+.post-num-box {
+    border: 1px solid #2a579a;
+    border-radius: 3px;
+    font-family: SairaSemiCondensed-Bold;
+    position: absolute;
+    width: 58px;
+    display: block !important;
+}
+.post-num {
+    color: #2a579a;
+    font-size: 42px;
+    height: 66px;
+    margin: 0;
+    padding-right: 7px;
+    text-align: right;
+}
+.post-summary-box {
+    display: block;
+    margin-left: 85px;
+}

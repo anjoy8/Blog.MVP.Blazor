@@ -168,5 +168,21 @@ namespace Blog.MVP.Blazor.SSR
             }
             return reval;
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="thisValue"></param>
+        /// <param name="fillDigits">填充位数</param>
+        /// <returns></returns>
+        public static string ObjToStringFill2(this int thisValue, int fillDigits = 2)
+        {
+            if (thisValue >= 0 && thisValue < 10)
+            {
+                return thisValue.ToString().PadLeft(fillDigits, '0');
+            }
+            return thisValue.ObjToString();
+        }
     }
 }

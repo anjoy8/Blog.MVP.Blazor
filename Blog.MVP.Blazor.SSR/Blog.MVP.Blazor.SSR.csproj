@@ -32,13 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
-    <_ContentIncludedByDefault Remove="Pages\azure\2020.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Blogs\Add.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Blogs\component\CancelBtn.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Blogs\component\Editor.razor" />
-    <_ContentIncludedByDefault Remove="Pages\Blogs\List.razor" />
-    <_ContentIncludedByDefault Remove="Pages\identityserver4\2020.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Post\Add.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Post\component\CancelBtn.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Post\component\Editor.razor" />
+    <_ContentIncludedByDefault Remove="Pages\Post\List.razor" />
     <_ContentIncludedByDefault Remove="Shared\ArtBody.razor" />
     <_ContentIncludedByDefault Remove="Shared\ArtTitle.razor" />
     <_ContentIncludedByDefault Remove="Shared\Author.razor" />
@@ -79,59 +76,35 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Watch Remove="Pages\Blogs\component\CancelBtn.razor" />
+    <Watch Remove="Pages\Post\component\CancelBtn.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Blogs\component\CancelBtn.razor" />
+    <UpToDateCheckInput Remove="Pages\Post\component\CancelBtn.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <Watch Remove="Pages\Blogs\component\Editor.razor" />
+    <Watch Remove="Pages\Post\component\Editor.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Blogs\component\Editor.razor" />
+    <UpToDateCheckInput Remove="Pages\Post\component\Editor.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <Watch Remove="Pages\Blogs\Add.razor" />
+    <Watch Remove="Pages\Post\Add.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Blogs\Add.razor" />
+    <UpToDateCheckInput Remove="Pages\Post\Add.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <Watch Remove="Pages\Blogs\List.razor" />
+    <Watch Remove="Pages\Post\List.razor" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Blogs\List.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Watch Remove="Pages\azure\2020.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\azure\2020.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Watch Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\aspnetcore-abp-blazor\2020.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Watch Remove="Pages\identityserver4\2020.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\identityserver4\2020.razor" />
+    <UpToDateCheckInput Remove="Pages\Post\List.razor" />
   </ItemGroup>
 
 </Project>

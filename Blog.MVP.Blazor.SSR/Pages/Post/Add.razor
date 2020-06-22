@@ -1,14 +1,14 @@
-﻿@page "/blog/modify/{Id:int}"
+﻿@page "/blog/add"
 
 @using Blog.MVP.Blazor.SSR.Models
 
 @inject HttpClient Http
 @inject NavigationManager NavManager
-@using  Blog.MVP.Blazor.SSR.Pages.Blogs.component
+@using  Blog.MVP.Blazor.SSR.Pages.Post.component
 
-<h1>编辑</h1>
+<h1>添加</h1>
 
-<Editor BlogArticle="BlogArticle" OnSaveCallback="OnSaveAsync"></Editor>
+<Editor OnSaveCallback="OnSaveAsync"></Editor>
 
 
 <div class="text-danger">
@@ -16,18 +16,14 @@
 </div>
 
 @code {
-    [Parameter]
-    public int Id { get; set; }
 
     private BlogArticle BlogArticle { get; set; }
 
-    private string _errmsg = "";
+    private string _errmsg;
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
-
-        var result = await Http.GetFromJsonAsync<MessageModel<BlogArticle>>("http://apk.neters.club/api/Blog/GetBlogByIdForMVP?id=" + Id);
-        BlogArticle = result.response;
+        return base.OnInitializedAsync();
     }
 
     private async Task OnSaveAsync(BlogArticle blogArticle)
@@ -36,7 +32,7 @@
 
         Http.DefaultRequestHeaders.Remove("Authorization");
         Http.DefaultRequestHeaders.Add("Authorization", $"Bearer {BlogArticle.Token}");
-        var result = await Http.PutAsJsonAsync("http://apk.neters.club/api/Blog/Update", BlogArticle);
+        var result = await Http.PostAsJsonAsync("http://apk.neters.club/api/Blog/AddForMVP", BlogArticle);
 
         if (result.IsSuccessStatusCode)
         {

@@ -1,4 +1,10 @@
 ﻿<article class="article-post-summary">
+    <div class="post-num-box d-none d-md-block">
+        <div class="post-num">
+            @(Num > 0 ? Num.ObjToStringFill2() : ".")
+        </div>
+    </div>
+
     <div class="post-summary-box">
         <h4 class="post-summary-title">
             <a href="http://apk.neters.club/api/Blog/GoUrl?id=@(bID)">
@@ -31,4 +37,6 @@
     public DateTime bCreateTime { get; set; }
     [Parameter]
     public int btraffic { get; set; }
+    [Parameter]
+    public int Num { get; set; }
 }
