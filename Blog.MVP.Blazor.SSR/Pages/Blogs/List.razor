@@ -46,21 +46,13 @@
     private MessageModel<List<BlogArticle>> _blogs;
     private List<BlogArticle> _blogs2 = new List<BlogArticle>();
 
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    this._blogs = await Http.GetFromJsonAsync<MessageModel<List<BlogArticle>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=" + type);
-
-    //    _blogs2 = _blogs.response;
-    //}
-
     protected override async Task OnParametersSetAsync()
     {
         this._blogs = await Http.GetFromJsonAsync<MessageModel<List<BlogArticle>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=" + type);
-
+        _blogs.response = _blogs.response.OrderByDescending(d => d.bCreateTime).ToList();
         _blogs2 = _blogs.response;
         num = 0;
     }
-
 
     private void SearchArs(MouseEventArgs e = null)
     {
