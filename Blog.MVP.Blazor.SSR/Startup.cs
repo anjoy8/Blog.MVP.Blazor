@@ -1,5 +1,7 @@
-using Blog.MVP.Blazor.SSR.Data;
+using Blog.MVP.Blazor.SSR.Services;
+using Blog.MVP.Blazor.SSR.Extensions;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +23,16 @@ namespace Blog.MVP.Blazor.SSR
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // authn
+            services.AddAuthorizationCore();
+            services.AddScoped<AuthenticationStateProvider, TokenAuthStateProvider>();
+
+            // services and state
+            services.AddScoped<AppState>();
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<WeatherForecastService>();
+            services.AddScoped<BlogService>();
             services.AddTransient<HttpClient>();
         }
 

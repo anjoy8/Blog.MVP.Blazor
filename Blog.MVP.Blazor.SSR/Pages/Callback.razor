@@ -1,0 +1,18 @@
+﻿@page "/callback"
+
+@layout NoLayout
+@inject AppState AppState
+@inject IJSRuntime JS
+@inject NavigationManager Nav
+
+@code { protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var user = await JS.CallbackAsync();
+        if (user != null)
+        {
+            var userInfo = await JS.GetUserInfoAsync();
+            AppState.SetUserInfo(userInfo);
+            await JS.SetTokenToStorage(userInfo.AccessToken);
+            Nav.NavigateTo("/blog/list");
+        }
+    } }

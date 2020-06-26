@@ -3,6 +3,8 @@
 @using Blog.MVP.Blazor.SSR.Models
 
 @inject HttpClient Http
+@inject IJSRuntime JS
+@inject BlogService BlogService
 
 <h1>博客</h1>
 
@@ -41,7 +43,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var data = await Http.GetFromJsonAsync<MessageModel<List<BlogArticle>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=MVP_azure_2020|MVP_aspnetcore-abp-blazor_2020|MVP_ids4_2020");
-        this._blogs = data;
+        this._blogs = await BlogService.GetBlogs();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+
     }
 }

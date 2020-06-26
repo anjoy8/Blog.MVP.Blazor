@@ -4,6 +4,8 @@
 
 @inject HttpClient Http
 @inject NavigationManager NavManager
+@inject BlogService BlogService
+
 @using  Blog.MVP.Blazor.SSR.Pages.Post.component
 
 <h1>编辑</h1>
@@ -34,9 +36,7 @@
     {
         BlogArticle = blogArticle;
 
-        Http.DefaultRequestHeaders.Remove("Authorization");
-        Http.DefaultRequestHeaders.Add("Authorization", $"Bearer {BlogArticle.Token}");
-        var result = await Http.PutAsJsonAsync("http://apk.neters.club/api/Blog/Update", BlogArticle);
+        var result = await BlogService.UpdateBlog(BlogArticle);
 
         if (result.IsSuccessStatusCode)
         {
