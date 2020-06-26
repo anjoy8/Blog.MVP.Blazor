@@ -43,11 +43,16 @@
 
     protected override async Task OnInitializedAsync()
     {
-        this._blogs = await BlogService.GetBlogs();
+        //this._blogs = await BlogService.GetBlogs();
     }
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (firstRender)
+        {
+            this._blogs = await BlogService.GetBlogs();
 
+            StateHasChanged();
+        }
     }
 }
