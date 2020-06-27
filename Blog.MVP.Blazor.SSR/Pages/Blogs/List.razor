@@ -9,7 +9,7 @@
     <div class="row">
         <section class="col-lg-9 col-md-12">
 
-            <ArtTitle Title="ASP.NET Core (2020)" Subtitle="Best and Fastest Frame" />
+            <ArtTitle Title="@Title" Subtitle="@Subtitle" />
 
             <hr>
 
@@ -45,6 +45,8 @@
     private int num = 0;
     private MessageModel<List<BlogArticle>> _blogs;
     private List<BlogArticle> _blogs2 = new List<BlogArticle>();
+    private string Title = "";
+    private string Subtitle = "";
 
     protected override async Task OnParametersSetAsync()
     {
@@ -52,6 +54,8 @@
         _blogs.response = _blogs.response.OrderByDescending(d => d.bCreateTime).ToList();
         _blogs2 = _blogs.response;
         num = 0;
+        Title = type.Replace("MVP_", "");
+        Subtitle =$"Reader: {_blogs2.Sum(d => d.btraffic).ObjToString()}";
     }
 
     private void SearchArs(MouseEventArgs e = null)

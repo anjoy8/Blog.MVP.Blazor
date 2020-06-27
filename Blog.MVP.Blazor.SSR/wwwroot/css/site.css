@@ -201,6 +201,10 @@ app {
     margin-right: 1px;
     padding: 5px 10px;
 }
+    .toptags-list a.video {
+        background-color: #00a1d6 !important;
+    }
+
 
 footer {
     text-align: center;
