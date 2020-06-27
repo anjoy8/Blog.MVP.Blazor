@@ -25,9 +25,16 @@
 
     private string _errmsg = "";
 
-    protected override async Task OnInitializedAsync()
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        BlogArticle = (await BlogService.GetBlogByIdForMVP(Id)).response;
+        if (firstRender)
+        {
+            BlogArticle = (await BlogService.GetBlogByIdForMVP(Id)).response;
+
+            StateHasChanged();
+        }
     }
 
     private async Task OnSaveAsync(BlogArticle blogArticle)
