@@ -61,7 +61,7 @@
     <script src="_framework/blazor.server.js"></script>
     <script>
         var userInfo = window.users.getUserInfoFromStorage();
-        if (userInfo != null && userInfo.profile != null && userInfo.profile.name) {
+        if (isNotExpired(userInfo)) {
             document.getElementById("username").innerHTML = userInfo.profile.name;
             document.getElementById("logined").style.display = "contents";
             document.getElementById("accessed").style.display = "none";
@@ -69,6 +69,10 @@
             document.getElementById("username").innerHTML = "null";
             document.getElementById("logined").style.display = "none";
             document.getElementById("accessed").style.display = "blocak";
+        }
+
+        function isNotExpired(userInfo) {
+            return userInfo != null && userInfo.profile != null && userInfo.profile.name && ((new Date()).getTime() < userInfo.expireTimeTamp);
         }
     </script>
 </body>
