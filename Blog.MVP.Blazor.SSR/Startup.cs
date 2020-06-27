@@ -24,11 +24,11 @@ namespace Blog.MVP.Blazor.SSR
         public void ConfigureServices(IServiceCollection services)
         {
             // services and state
-            services.AddScoped<AppState>();
+            services.AddScoped<BlogService>();
+            services.AddScoped<AccessState>();
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<BlogService>();
             services.AddTransient<HttpClient>();
         }
 

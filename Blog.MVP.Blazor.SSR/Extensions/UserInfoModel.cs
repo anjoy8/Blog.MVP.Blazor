@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Blog.MVP.Blazor.SSR.Extensions
 {
@@ -7,8 +8,30 @@ namespace Blog.MVP.Blazor.SSR.Extensions
         public string AccessToken { get; set; }
         public string TokenType { get; set; }
         public string Scope { get; set; }
-        public bool Expired { get; set; }
+        public long ExpireTimeTamp { get; set; }
         public UserProfileModel Profile { get; set; } = new UserProfileModel();
+
+        private DateTime _ex;
+
+        /// <summary>
+        /// 当前时间-过期时间
+        /// 如果true，代表已经过期了
+        /// </summary>
+        /// <returns></returns>
+        public bool IsExpired() => DateTime.Now.Time1SubTIme2(ExpireTimeTamp.TimeStampToDateTime());
+        public DateTime ExpireTime
+        {
+            get
+            {
+                return _ex;
+            }
+            
+            set
+            {
+                _ex = ExpireTimeTamp.TimeStampToDateTime();
+                value = _ex;
+            }
+        }
     }
 
     public class UserProfileModel
@@ -17,24 +40,5 @@ namespace Blog.MVP.Blazor.SSR.Extensions
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Website { get; set; } = string.Empty;
-    }
-
-    public class ContentHeaderModel
-    {
-        public string ContentHeader { get; set; } = "Dashboard";
-        public List<BreadcrumbItem> BreadcrumbItems { get; set; }
-        public ContentHeaderModel()
-        {
-            BreadcrumbItems = new List<BreadcrumbItem> {
-                new BreadcrumbItem { Text = "Home", Route = "#" },
-                new BreadcrumbItem{ Text = "Dashboard", Route = "dashboard" }
-            };
-        }
-    }
-
-    public class BreadcrumbItem
-    {
-        public string Text { get; set; }
-        public string Route { get; set; }
     }
 }

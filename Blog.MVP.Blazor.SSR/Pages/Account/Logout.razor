@@ -1,0 +1,12 @@
+﻿@page "/account/logout"
+@inject IJSRuntime JS
+
+<h3>未完待续...</h3>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.SetUserInfoToStorage(new UserInfoModel() { });
+        await JS.SignOutAsync();
+    }
+}

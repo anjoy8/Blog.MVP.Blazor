@@ -4,25 +4,29 @@ using System.Threading.Tasks;
 
 namespace Blog.MVP.Blazor.SSR.Extensions
 {
+    /// <summary>
+    /// JSRuntime扩展类
+    /// 用来调取app.js文件
+    /// </summary>
     public static class JSRuntimeExtensions
     {
         public async static Task SignInAsync(this IJSRuntime jsRuntime)
         {
             await jsRuntime.InvokeAsync<object>("users.startSigninMainWindow");
         }
-        public async static Task<string> GetTokenFromStorage(this IJSRuntime jsRuntime)
+        public async static Task<UserInfoModel> GetUserInfoFromStorage(this IJSRuntime jsRuntime)
         {
-            return await jsRuntime.InvokeAsync<string>("users.getTokenFromStorage");
+            return await jsRuntime.InvokeAsync<UserInfoModel>("users.getUserInfoFromStorage");
         }
 
-        public async static Task SetTokenToStorage(this IJSRuntime jsRuntime, string token)
+        public async static Task SetUserInfoToStorage(this IJSRuntime jsRuntime, UserInfoModel userInfoModel)
         {
-            await jsRuntime.InvokeAsync<string>("users.setTokenToStorage", token);
+            await jsRuntime.InvokeAsync<UserInfoModel>("users.setUserInfoToStorage", userInfoModel);
         }
 
         public async static Task SignOutAsync(this IJSRuntime jsRuntime)
         {
-            await jsRuntime.InvokeAsync<bool>("users.startSignoutMainWindow");
+            await jsRuntime.InvokeAsync<object>("users.startSignoutMainWindow");
         }
 
         public async static Task<UserInfoModel> CallbackAsync(this IJSRuntime jsRuntime)

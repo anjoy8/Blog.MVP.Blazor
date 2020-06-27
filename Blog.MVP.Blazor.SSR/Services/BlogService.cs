@@ -8,22 +8,64 @@ using System.Threading.Tasks;
 
 namespace Blog.MVP.Blazor.SSR.Services
 {
-    public class BlogService : ServiceBase
+    /// <summary>
+    /// 服务基类
+    /// 主要用来对Http请求的基础封装
+    /// </summary>
+    public class BlogService : BaseService
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="serviceProvider"></param>
         public BlogService(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
-
-        public async Task<MessageModel<List<BlogArticle>>> GetBlogs(int page = 1)
+        /// <summary>
+        /// 获取全部博文
+        /// </summary>
+        /// <param name="types"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<MessageModel<List<BlogArticle>>> GetBlogs(string types, int page = 1)
         {
-            var httpClient = await SecureHttpClientAsync();
-            return await httpClient.GetFromJsonAsync<MessageModel<List<BlogArticle>>>($"http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=MVP_azure_2020|MVP_aspnetcore-abp-blazor_2020|MVP_ids4_2020&page={page}");
+            var httpClient = await SecurityHttpClientAsync();
+            return await httpClient.GetFromJsonAsync<MessageModel<List<BlogArticle>>>($"/api/Blog/GetBlogsByTypesForMVP?types={types}&page={page}");
         }
+
+        /// <summary>
+        /// 获取博文详情
+        /// </summary>
+        /// <param name="types"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<MessageModel<BlogArticle>> GetBlogByIdForMVP(int id = 0)
+        {
+            var httpClient = await SecurityHttpClientAsync();
+            return await httpClient.GetFromJsonAsync<MessageModel<BlogArticle>>($"/api/Blog/GetBlogByIdForMVP?id={id}");
+        }
+
+        /// <summary>
+        /// 更新博客
+        /// </summary>
+        /// <param name="blogArticle"></param>
+        /// <returns></returns>
         public async Task<HttpResponseMessage> UpdateBlog(BlogArticle blogArticle)
         {
-            var httpClient = await SecureHttpClientAsync();
-            return await httpClient.PutAsJsonAsync("http://apk.neters.club/api/Blog/Update", blogArticle);
+            var httpClient = await SecurityHttpClientAsync();
+            return await httpClient.PutAsJsonAsync("/api/Blog/Update", blogArticle);
+        }
+
+        /// <summary>
+        /// 添加博客
+        /// </summary>
+        /// <param name="blogArticle"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> AddForMVP(BlogArticle blogArticle)
+        {
+            var httpClient = await SecurityHttpClientAsync();
+            return await httpClient.PostAsJsonAsync("/api/Blog/AddForMVP", blogArticle);
         }
 
     }

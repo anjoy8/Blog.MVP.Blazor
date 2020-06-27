@@ -27,9 +27,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-
-        var result = await Http.GetFromJsonAsync<MessageModel<BlogArticle>>("http://apk.neters.club/api/Blog/GetBlogByIdForMVP?id=" + Id);
-        BlogArticle = result.response;
+        BlogArticle = (await BlogService.GetBlogByIdForMVP(Id)).response;
     }
 
     private async Task OnSaveAsync(BlogArticle blogArticle)
@@ -44,7 +42,7 @@
         }
         else
         {
-            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase + "。请重试";
+            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase + "。请重试或登录";
         }
     }
 

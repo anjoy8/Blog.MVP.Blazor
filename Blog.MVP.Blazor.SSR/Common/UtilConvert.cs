@@ -2,11 +2,14 @@
 
 namespace Blog.MVP.Blazor.SSR
 {
+
     /// <summary>
     /// 
     /// </summary>
     public static class UtilConvert
     {
+        private static DateTime _dtStart = new DateTime(1970, 1, 1, 8, 0, 0);
+
         /// <summary>
         /// 
         /// </summary>
@@ -183,6 +186,30 @@ namespace Blog.MVP.Blazor.SSR
                 return thisValue.ToString().PadLeft(fillDigits, '0');
             }
             return thisValue.ObjToString();
+        }
+
+        /// <summary>
+        /// 时间比较
+        /// true表示t1大
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <param name="t2"></param>
+        /// <returns></returns>
+        public static bool Time1SubTIme2(this DateTime t1, DateTime t2)
+        {
+            return DateTime.Compare(t1, t2) > 0;
+        }
+
+        /// <summary> 
+        /// 根据时间戳获取时间 
+        /// </summary>  
+        public static DateTime TimeStampToDateTime(this long timeStamp)
+        {
+            if (timeStamp > 0)
+            {
+                return _dtStart.AddMilliseconds(timeStamp);
+            }
+            return DateTime.MinValue;
         }
     }
 }

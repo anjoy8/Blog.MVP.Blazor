@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blog.MVP.Blazor.SSR.Extensions
 {
-    public abstract class ServiceBase
+    public abstract class BaseService
     {
-        protected ServiceBase(IServiceProvider serviceProvider)
+        protected BaseService(IServiceProvider serviceProvider)
         {
             ServiceProvider = serviceProvider;
         }
@@ -16,15 +16,15 @@ namespace Blog.MVP.Blazor.SSR.Extensions
         protected IServiceProvider ServiceProvider { get; }
         protected HttpClient HttpClient => ServiceProvider.GetService<HttpClient>();
         protected IJSRuntime JS => ServiceProvider.GetService<IJSRuntime>();
-        protected AppState AppState => ServiceProvider.GetService<AppState>();
+        protected AccessState AccessState => ServiceProvider.GetService<AccessState>();
 
-        protected async Task<HttpClient> SecureHttpClientAsync()
+        protected async Task<HttpClient> SecurityHttpClientAsync()
         {
             var httpClient = ServiceProvider.GetService<HttpClient>();
-            //AppState.SetUserInfo(await JS.GetUserInfoAsync());
             httpClient.DefaultRequestHeaders.Remove("Authorization");
-            var token = await AppState.GetAccessToken();
+            var token = await AccessState.GetAccessToken();
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            httpClient.BaseAddress = new Uri("http://apk.neters.club");
             return httpClient;
         }
     }

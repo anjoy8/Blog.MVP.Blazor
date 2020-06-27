@@ -252,3 +252,7 @@ footer {
     display: block;
     margin-left: 85px;
 }
+.logo, .logo:hover {
+    color: black;
+    text-decoration: none;
+}

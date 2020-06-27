@@ -41,16 +41,11 @@
 @code {
     private MessageModel<List<BlogArticle>> _blogs;
 
-    protected override async Task OnInitializedAsync()
-    {
-        //this._blogs = await BlogService.GetBlogs();
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            this._blogs = await BlogService.GetBlogs();
+            this._blogs = await BlogService.GetBlogs("MVP_azure_2020|MVP_aspnetcore-abp-blazor_2020|MVP_ids4_2020");
 
             StateHasChanged();
         }

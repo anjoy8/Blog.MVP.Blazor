@@ -3,39 +3,38 @@
 @inherits LayoutComponentBase
 
 
-    <div>
-        <div class="form-group">
-            <label>标题</label>
-            <input @bind="BlogArticle.btitle" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>分类</label>
-            @*<input @bind="BlogArticle.bcategory" class="form-control" />*@
-            <select @bind="BlogArticle.bcategory" class="form-control" >
-                <option value="MVP_aspnetcore-abp-blazor_2020">MVP_aspnetcore-abp-blazor_2020</option>
-                <option value="MVP_azure_2020">MVP_azure_2020</option>
-                <option value="MVP_ids4_2020">MVP_ids4_2020</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>外链</label>
-            <input @bind="BlogArticle.bsubmitter" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>副标题</label>
-            <input @bind="BlogArticle.bcontent" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>阅读</label>
-            <input @bind="BlogArticle.btraffic" class="form-control" />
-        </div>
-
-        <button class="btn btn-primary" @onclick="TrySave">
-            保存
-        </button>
-
-        <CancelBtn Name="取消"></CancelBtn>
+<div>
+    <div class="form-group">
+        <label>标题</label>
+        <input @bind="BlogArticle.btitle" class="form-control" />
     </div>
+    <div class="form-group">
+        <label>分类</label>
+        <select @bind="BlogArticle.bcategory" class="form-control">
+            <option value="MVP_aspnetcore-abp-blazor_2020">MVP_aspnetcore-abp-blazor_2020</option>
+            <option value="MVP_azure_2020">MVP_azure_2020</option>
+            <option value="MVP_ids4_2020">MVP_ids4_2020</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>外链</label>
+        <input @bind="BlogArticle.bsubmitter" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>副标题</label>
+        <input @bind="BlogArticle.bcontent" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>阅读</label>
+        <input @bind="BlogArticle.btraffic" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary" @onclick="TrySave">
+        保存
+    </button>
+
+    <CancelBtn Name="取消"></CancelBtn>
+</div>
 
 @code{
 

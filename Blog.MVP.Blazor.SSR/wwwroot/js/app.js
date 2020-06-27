@@ -70,12 +70,16 @@
         getUserInfo: function () {
             return mgr.getUser().then(function (user) {
                 console.log("getUserInfo success");
-                if (user == null) return {};
+                if (user === null) return {};
+                
+                var m = new Date();
+                var expiretime = new Date(m.getTime() + 1000 * user.expires_in);
+                console.log(expiretime);
                 return {
                     accessToken: user.access_token,
                     tokenType: user.token_type,
                     scope: user.scope,
-                    expired: user.expired,
+                    expireTimeTamp: Date.parse(expiretime),
                     profile: {
                         userId: user.profile.sub,
                         name: user.profile.name,
@@ -110,11 +114,11 @@
                 console.error(err);
             });
         },
-        getTokenFromStorage: function () {
-            return localStorage.getItem("token") || "";
+        getUserInfoFromStorage: function () {
+            return JSON.parse(localStorage['USER_INFO'] || "{}") || {};
         },
-        setTokenToStorage: function (token) {
-            localStorage.setItem("token", token);
+        setUserInfoToStorage: function (userInfo) {
+            localStorage.setItem("USER_INFO", JSON.stringify(userInfo));
         },
         log: function (message) {
             console.log(message);
