@@ -3,8 +3,8 @@
     ///////////////////////////////
     // config
     ///////////////////////////////
-    Oidc.Log.logger = console;
-    Oidc.Log.level = Oidc.Log.DEBUG;
+    //Oidc.Log.logger = console;
+    //Oidc.Log.level = Oidc.Log.DEBUG;
 
     var url = window.location.origin;
     console.log('root origin URL at ' + url);
@@ -33,7 +33,6 @@
     // events
     ///////////////////////////////
     mgr.events.addAccessTokenExpiring(function () {
-        console.log("token expiring");
 
         // maybe do this code manually if automaticSilentRenew doesn't work for you
         mgr.signinSilent().then(function (user) {
