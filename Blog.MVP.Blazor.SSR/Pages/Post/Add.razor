@@ -29,18 +29,27 @@
 
     private async Task OnSaveAsync(BlogArticle blogArticle)
     {
-        BlogArticle = blogArticle;
-
-        var result = await BlogService.AddForMVP(blogArticle);
-
-        if (result.IsSuccessStatusCode)
+        if (blogArticle.btitle.IsNotEmptyOrNull() && blogArticle.bsubmitter.IsNotEmptyOrNull())
         {
-            NavManager.NavigateTo("/blog/list");
+
+            BlogArticle = blogArticle;
+
+            var result = await BlogService.AddForMVP(blogArticle);
+
+            if (result.IsSuccessStatusCode)
+            {
+                NavManager.NavigateTo("/blog/list");
+            }
+            else
+            {
+                _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase + "。请重试或者登录";
+            }
         }
         else
         {
-            _errmsg = "保存失败! 错误原因：" + result.ReasonPhrase + "。请重试或者登录";
+            _errmsg = "参数不能为空！";
         }
+
     }
 
 }
