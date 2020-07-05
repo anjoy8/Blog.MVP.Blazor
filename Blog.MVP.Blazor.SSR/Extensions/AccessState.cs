@@ -1,4 +1,7 @@
-﻿using Microsoft.JSInterop;
+﻿using Blog.MVP.Blazor.SSR.Pages;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +11,38 @@ namespace Blog.MVP.Blazor.SSR.Extensions
 {
     public class AccessState
     {
-        private readonly IJSRuntime _jS;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly AuthStateCache _cache;
+        private readonly NavigationManager _navigationManager;
 
-        public AccessState(IJSRuntime JS)
+        public AccessState(IHttpContextAccessor accessor, AuthStateCache cache, NavigationManager navigationManager)
         {
-            _jS = JS;
+            _accessor = accessor;
+            _cache = cache;
+            _navigationManager = navigationManager;
         }
 
         public async Task<string> GetAccessToken()
         {
-            var userInfo = await _jS.GetUserInfoFromStorage();
+            // 获取当前用户的sid唯一标志
+            var sid = _accessor.HttpContext.User.Claims
+                   .Where(c => c.Type.Equals("sid"))
+                   .Select(c => c.Value)
+                   .FirstOrDefault();
 
-            if (!IsLogin(userInfo))
+            // 正常，则返回结果
+            if (sid != null && _cache.HasSubjectId(sid))
             {
-                await _jS.SignInAsync();
+                return _cache.Get(sid).AccessToken;
             }
 
+            // 否则，跳转登录页，去认证中心拉取
+            _navigationManager.NavigateTo("/Login", true);
 
-            return userInfo.AccessToken;
+            return await Task.FromResult(string.Empty);
+
         }
 
-        public bool IsLogin(UserInfoModel UserInfo) => UserInfo != null && UserInfo.AccessToken.IsNotEmptyOrNull() && !UserInfo.IsExpired();
 
     }
 }
