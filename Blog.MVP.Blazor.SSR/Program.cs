@@ -16,7 +16,7 @@ namespace Blog.MVP.Blazor.SSR
                 {
                     webBuilder
                     .UseStartup<Startup>()
-                    .UseUrls("http://localhost:5050");
+                    .UseUrls("https://localhost:5050");
                 });
     }
 }

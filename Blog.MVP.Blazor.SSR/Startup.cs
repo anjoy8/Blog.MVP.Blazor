@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Blog.MVP.Blazor.SSR
 {
@@ -27,6 +28,23 @@ namespace Blog.MVP.Blazor.SSR
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //nginx 
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+                options.ExcludedHosts.Add("mvp.neters.club");
+            });
+
+            services.AddSameSiteCookiePolicy();
+
             // services and state
             services.AddScoped<BlogService>();
             services.AddScoped<AccessState>();
@@ -54,6 +72,7 @@ namespace Blog.MVP.Blazor.SSR
             .AddOpenIdConnect("oidc", options =>
             {
                 options.Authority = "https://ids.neters.club/";
+                options.RequireHttpsMetadata = false;//必须https协议
                 options.ClientId = "blazorserver"; // 75 seconds
                 options.ClientSecret = "secret";
                 options.ResponseType = "code";
@@ -90,6 +109,11 @@ namespace Blog.MVP.Blazor.SSR
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseHsts();
+            app.UseForwardedHeaders();
+            app.UseHttpsRedirection();
+            app.UseCookiePolicy();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -100,9 +124,10 @@ namespace Blog.MVP.Blazor.SSR
             }
 
             app.UseStaticFiles();
-
-            app.UseAuthentication();
             app.UseRouting();
+           
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
