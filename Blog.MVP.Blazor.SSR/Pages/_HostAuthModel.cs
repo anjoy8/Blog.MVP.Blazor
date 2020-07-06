@@ -32,7 +32,7 @@ namespace Blog.MVP.Blazor.SSR.Pages
                     .Select(c => c.Value)
                     .FirstOrDefault();
 
-                System.Diagnostics.Debug.WriteLine($"sid: {sid}");
+                Console.WriteLine($"sid: {sid}");
 
                 // 如果缓存中不存在
                 if (sid != null && !Cache.HasSubjectId(sid))
@@ -41,6 +41,8 @@ namespace Blog.MVP.Blazor.SSR.Pages
                     DateTimeOffset expiration = authResult.Properties.ExpiresUtc.Value;
                     string accessToken = await HttpContext.GetTokenAsync("access_token");
                     string refreshToken = await HttpContext.GetTokenAsync("refresh_token");
+
+                    Console.WriteLine($"accessToken: {accessToken}");
                     Cache.Add(sid, expiration, accessToken, refreshToken);
                 }
             }

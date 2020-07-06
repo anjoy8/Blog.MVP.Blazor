@@ -53,8 +53,6 @@ namespace Blog.MVP.Blazor.SSR
             services.AddServerSideBlazor();
             services.AddTransient<HttpClient>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
             // 第一部分:认证方案的配置
             // add cookie-based session management with OpenID Connect authentication
             services.AddAuthentication(options =>
@@ -109,10 +107,6 @@ namespace Blog.MVP.Blazor.SSR
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseHsts();
-            app.UseForwardedHeaders();
-            app.UseHttpsRedirection();
-            app.UseCookiePolicy();
 
             if (env.IsDevelopment())
             {
@@ -125,9 +119,15 @@ namespace Blog.MVP.Blazor.SSR
 
             app.UseStaticFiles();
             app.UseRouting();
-           
+
+            // ******
+            // BLAZOR COOKIE Auth Code (begin)
+            app.UseHsts();
+            app.UseHttpsRedirection();
+            app.UseCookiePolicy();
             app.UseAuthentication();
-            app.UseAuthorization();
+            // BLAZOR COOKIE Auth Code (end)
+            // ******
 
             app.UseEndpoints(endpoints =>
             {
