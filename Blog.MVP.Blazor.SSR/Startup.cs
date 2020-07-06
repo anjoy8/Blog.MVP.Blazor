@@ -1,4 +1,4 @@
-using Blog.MVP.Blazor.SSR.Services;
+ï»¿using Blog.MVP.Blazor.SSR.Services;
 using Blog.MVP.Blazor.SSR.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -10,6 +10,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace Blog.MVP.Blazor.SSR
 {
@@ -36,13 +37,20 @@ namespace Blog.MVP.Blazor.SSR
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            // µÚÒ»²¿·Ö:ÈÏÖ¤·½°¸µÄÅäÖÃ
+            // ç¬¬ä¸€éƒ¨åˆ†:è®¤è¯æ–¹æ¡ˆçš„é…ç½®
+            // add cookie-based session management with OpenID Connect authentication
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
                 options.DefaultChallengeScheme = "oidc";
             })
-            .AddCookie("Cookies")
+            .AddCookie("Cookies", options =>
+            {
+                //options.Cookie.Name = "blazorclient";
+
+                //options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                //options.SlidingExpiration = false;
+            })
             .AddOpenIdConnect("oidc", options =>
             {
                 options.Authority = "https://ids.neters.club/";
@@ -51,9 +59,9 @@ namespace Blog.MVP.Blazor.SSR
                 options.ResponseType = "code";
                 options.SaveTokens = true;
 
-                // ÎªapiÔÚÊ¹ÓÃrefresh_tokenµÄÊ±ºò,ÅäÖÃoffline_access×÷ÓÃÓò
+                // ä¸ºapiåœ¨ä½¿ç”¨refresh_tokençš„æ—¶å€™,é…ç½®offline_accessä½œç”¨åŸŸ
                 options.GetClaimsFromUserInfoEndpoint = true;
-                // ×÷ÓÃÓò»ñÈ¡
+                // ä½œç”¨åŸŸè·å–
                 options.Scope.Clear();
                 options.Scope.Add("roles");//"roles"
                 options.Scope.Add("rolename");//"rolename"
@@ -73,9 +81,9 @@ namespace Blog.MVP.Blazor.SSR
                 };
             });
 
-            // µÚÈı²¿·Ö£ºÊÚÈ¨×´Ì¬µÄ±£»¤Óë¹ÜÀí
+            // ç¬¬ä¸‰éƒ¨åˆ†ï¼šæˆæƒçŠ¶æ€çš„ä¿æŠ¤ä¸ç®¡ç†
             services.AddSingleton<AuthStateCache>();
-            // ¿ªÆôAuthenticationStateProvider ·şÎñ
+            // å¼€å¯AuthenticationStateProvider æœåŠ¡
             services.AddScoped<AuthenticationStateProvider, AuthStateHandler>();
         }
 

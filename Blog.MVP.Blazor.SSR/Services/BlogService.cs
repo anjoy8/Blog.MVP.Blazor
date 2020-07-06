@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace Blog.MVP.Blazor.SSR.Services
 {
     /// <summary>
-    /// ·şÎñ»ùÀà
-    /// Ö÷ÒªÓÃÀ´¶ÔHttpÇëÇóµÄ»ù´¡·â×°
+    /// æœåŠ¡åŸºç±»
+    /// ä¸»è¦ç”¨æ¥å¯¹Httpè¯·æ±‚çš„åŸºç¡€å°è£…
     /// </summary>
     public class BlogService : BaseService
     {
         /// <summary>
-        /// ¹¹Ôìº¯Êı
+        /// æ„é€ å‡½æ•°
         /// </summary>
         /// <param name="serviceProvider"></param>
         public BlogService(IServiceProvider serviceProvider) : base(serviceProvider)
@@ -23,7 +23,7 @@ namespace Blog.MVP.Blazor.SSR.Services
         }
 
         /// <summary>
-        /// »ñÈ¡È«²¿²©ÎÄ
+        /// è·å–å…¨éƒ¨åšæ–‡
         /// </summary>
         /// <param name="types"></param>
         /// <param name="page"></param>
@@ -35,7 +35,7 @@ namespace Blog.MVP.Blazor.SSR.Services
         }
 
         /// <summary>
-        /// »ñÈ¡²©ÎÄÏêÇé
+        /// è·å–åšæ–‡è¯¦æƒ…
         /// </summary>
         /// <param name="types"></param>
         /// <param name="page"></param>
@@ -47,7 +47,7 @@ namespace Blog.MVP.Blazor.SSR.Services
         }
 
         /// <summary>
-        /// ¸üĞÂ²©¿Í
+        /// æ›´æ–°åšå®¢
         /// </summary>
         /// <param name="blogArticle"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Blog.MVP.Blazor.SSR.Services
         }
 
         /// <summary>
-        /// Ìí¼Ó²©¿Í
+        /// æ·»åŠ åšå®¢
         /// </summary>
         /// <param name="blogArticle"></param>
         /// <returns></returns>
