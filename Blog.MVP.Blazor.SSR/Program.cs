@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
 using System.Net;
 
 namespace Blog.MVP.Blazor.SSR
@@ -21,7 +23,7 @@ namespace Blog.MVP.Blazor.SSR
                     {
                         options.Listen(IPAddress.Loopback, 5050, listenOptions =>
                         {
-                            listenOptions.UseHttps("server.pfx", "123456");
+                            listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
                         });
                     })
                     //.UseUrls("https://*:5050")
