@@ -43,12 +43,6 @@ namespace Blog.MVP.Blazor.SSR
                 options.ExcludedHosts.Add("mvp.neters.club");
             });
 
-            //此处可以不指定,默认值如此
-            services.AddHttpsRedirection(options => {
-                options.HttpsPort = 5001; //本地环境请使用5001
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect; //强制重定向,本地环境注释掉
-            });
-
             services.AddSameSiteCookiePolicy();
 
             // services and state
