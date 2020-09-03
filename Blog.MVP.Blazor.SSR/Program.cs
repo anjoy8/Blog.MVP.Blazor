@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using System.Net;
 
 namespace Blog.MVP.Blazor.SSR
 {
@@ -16,7 +19,15 @@ namespace Blog.MVP.Blazor.SSR
                 {
                     webBuilder
                     .UseStartup<Startup>()
-                    .UseUrls("https://*:5050");
+                    .ConfigureKestrel(options =>
+                    {
+                        options.Listen(IPAddress.Loopback, 443, listenOptions =>
+                        {
+                            listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
+                        });
+                    })
+                    //.UseUrls("https://*:5050")
+                    ;
                 });
     }
 }
