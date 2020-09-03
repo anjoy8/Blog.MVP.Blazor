@@ -43,6 +43,12 @@ namespace Blog.MVP.Blazor.SSR
                 options.ExcludedHosts.Add("mvp.neters.club");
             });
 
+            services.AddHttpsRedirection(options =>
+            {
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 443;
+            });
+
             services.AddSameSiteCookiePolicy();
 
             // services and state
@@ -115,6 +121,7 @@ namespace Blog.MVP.Blazor.SSR
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
             app.UseStaticFiles();
@@ -122,7 +129,6 @@ namespace Blog.MVP.Blazor.SSR
 
             // ******
             // BLAZOR COOKIE Auth Code (begin)
-            app.UseHsts();
             app.UseHttpsRedirection();
             app.UseCookiePolicy();
             app.UseAuthentication();

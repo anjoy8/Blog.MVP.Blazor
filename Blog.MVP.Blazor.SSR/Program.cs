@@ -21,7 +21,7 @@ namespace Blog.MVP.Blazor.SSR
                     .UseStartup<Startup>()
                     .ConfigureKestrel(options =>
                     {
-                        options.Listen(IPAddress.Loopback, 443, listenOptions =>
+                        options.Listen(IPAddress.IPv6Any, 443, listenOptions =>
                         {
                             listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
                         });
