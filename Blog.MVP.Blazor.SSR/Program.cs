@@ -19,14 +19,14 @@ namespace Blog.MVP.Blazor.SSR
                 {
                     webBuilder
                     .UseStartup<Startup>()
-                    //.ConfigureKestrel(options =>
-                    //{
-                    //    options.Listen(IPAddress.IPv6Any, 443, listenOptions =>
-                    //    {
-                    //        listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
-                    //    });
-                    //})
-                    .UseUrls("https://*:443")
+                    .ConfigureKestrel(options =>
+                    {
+                        options.Listen(IPAddress.IPv6Any, 443, listenOptions =>
+                        {
+                            listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
+                        });
+                    })
+                    //.UseUrls("https://*:443")
                     ;
                 });
     }
