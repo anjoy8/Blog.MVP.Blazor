@@ -26,7 +26,7 @@ namespace Blog.MVP.Blazor.SSR
                     //        listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "socialnetwork.pfx"), "123456");
                     //    });
                     //})
-                    //.UseUrls("https://*:5050")
+                    .UseUrls("https://*:443")
                     ;
                 });
     }
