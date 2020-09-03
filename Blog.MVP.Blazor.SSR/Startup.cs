@@ -17,9 +17,12 @@ namespace Blog.MVP.Blazor.SSR
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+
+        public Startup(IConfiguration configuration,IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -35,6 +38,7 @@ namespace Blog.MVP.Blazor.SSR
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
             });
 
+            // 配置Hsts
             services.AddHsts(options =>
             {
                 options.Preload = true;
@@ -43,11 +47,15 @@ namespace Blog.MVP.Blazor.SSR
                 options.ExcludedHosts.Add("mvp.neters.club");
             });
 
-            services.AddHttpsRedirection(options =>
+            // 非开发环境
+            if (!_env.IsDevelopment())
             {
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
+                services.AddHttpsRedirection(options =>
+                  {
+                      options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                      options.HttpsPort = 443;
+                  }); 
+            }
 
             services.AddSameSiteCookiePolicy();
 
