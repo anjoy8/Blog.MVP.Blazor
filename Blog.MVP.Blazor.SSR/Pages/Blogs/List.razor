@@ -1,4 +1,5 @@
 ﻿@page "/{type}/{year}"
+@page "/{type}/{year}/{searchKey}"
 
 @using Blog.MVP.Blazor.SSR.Models
 
@@ -37,7 +38,8 @@
 </div>
 
 @code {
-    private string searchKey = "";
+    [Parameter]
+    public string searchKey { get; set; } = "";
     [Parameter]
     public string type { get; set; } = "";
     [Parameter]
@@ -53,9 +55,15 @@
         this._blogs = await Http.GetFromJsonAsync<MessageModel<List<BlogArticle>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=" + type);
         _blogs.response = _blogs.response.OrderByDescending(d => d.bCreateTime).ToList();
         _blogs2 = _blogs.response;
+        if (searchKey.IsNotEmptyOrNull())
+        {
+            var searchArs = _blogs.response.Where(d => d.btitle != null && d.btitle.ToLower().Contains(searchKey.ToLower().Trim())).ToList();
+            _blogs.response = searchArs;
+        }
+
         num = 0;
         Title = type.Replace("MVP_", "");
-        Subtitle =$"Reader: {_blogs2.Sum(d => d.btraffic).ObjToString()}";
+        Subtitle = $"Reader: {_blogs2.Sum(d => d.btraffic).ObjToString()}";
     }
 
     private void SearchArs(MouseEventArgs e = null)
