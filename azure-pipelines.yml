@@ -31,6 +31,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'dockersvcconn'
-        repository: 'Blog.MVP.Blazor'
+        repository: 'laozhangisphi/blog.mvp.blazor'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
