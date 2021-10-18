@@ -28,10 +28,10 @@ namespace Blog.MVP.Blazor.SSR.Services
         /// <param name="types"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public async Task<MessageModel<List<BlogArticle>>> GetBlogs(string types, int page = 1)
+        public async Task<MessageModel<List<BlogArticleVo>>> GetBlogs(string types, int page = 1)
         {
             var httpClient = await SecurityHttpClientAsync();
-            return await httpClient.GetFromJsonAsync<MessageModel<List<BlogArticle>>>($"/api/Blog/GetBlogsByTypesForMVP?types={types}&page={page}");
+            return await httpClient.GetFromJsonAsync<MessageModel<List<BlogArticleVo>>>($"/api/Blog/GetBlogsByTypesForMVP?types={types}&page={page}");
         }
 
         /// <summary>

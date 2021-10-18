@@ -2,7 +2,7 @@
 
 namespace Blog.MVP.Blazor.SSR.Models
 {
-    public class BlogArticle
+    public class BlogArticleVo
     {
         /// <summary>
         /// 主键
@@ -41,12 +41,12 @@ namespace Blog.MVP.Blazor.SSR.Models
         /// <summary> 
         /// 修改时间
         /// </summary>
-        public DateTime bUpdateTime { get; set; }
+        public string bUpdateTime { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime bCreateTime { get; set; }
+        public string bCreateTime { get; set; }
         /// <summary>
         /// 备注
         /// </summary>

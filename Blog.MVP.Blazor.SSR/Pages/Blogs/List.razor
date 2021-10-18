@@ -45,14 +45,14 @@
     [Parameter]
     public string year { get; set; } = "2020";
     private int num = 0;
-    private MessageModel<List<BlogArticle>> _blogs;
-    private List<BlogArticle> _blogs2 = new List<BlogArticle>();
+    private MessageModel<List<BlogArticleVo>> _blogs;
+    private List<BlogArticleVo> _blogs2 = new List<BlogArticleVo>();
     private string Title = "";
     private string Subtitle = "";
 
     protected override async Task OnParametersSetAsync()
     {
-        this._blogs = await Http.GetFromJsonAsync<MessageModel<List<BlogArticle>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=" + type);
+        this._blogs = await Http.GetFromJsonAsync<MessageModel<List<BlogArticleVo>>>("http://apk.neters.club/api/Blog/GetBlogsByTypesForMVP?types=" + type);
         _blogs.response = _blogs.response.OrderByDescending(d => d.bCreateTime).ToList();
         _blogs2 = _blogs.response;
         if (searchKey.IsNotEmptyOrNull())
