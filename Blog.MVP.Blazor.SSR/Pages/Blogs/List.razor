@@ -20,7 +20,7 @@
             {
                 foreach (var item in _blogs.response)
                 {
-                    <ArtBody bID="@item.bID" Num="@(_blogs.response.Count-num)" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@item.bCreateTime" btraffic="@item.btraffic" />
+                    <ArtBody bID="@item.bID" Num="@(_blogs.response.Count-num)" btitle="@item.btitle" bcontent="@item.bcontent" bCreateTime="@(!string.IsNullOrEmpty(item.bCreateTime) ? DateTime.Parse(item.bCreateTime):DateTime.Now)" btraffic="@item.btraffic" />
                     num++;
                 }
             }
