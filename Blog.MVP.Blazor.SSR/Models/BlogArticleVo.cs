@@ -7,7 +7,7 @@ namespace Blog.MVP.Blazor.SSR.Models
         /// <summary>
         /// 主键
         /// </summary>
-        public int bID { get; set; }
+        public string bID { get; set; }
         /// <summary>
         /// 创建人
         /// </summary>
